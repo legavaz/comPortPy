@@ -35,9 +35,6 @@ def removeFix(mString=""):
     mString =   mString.replace("\r\n",'')
     return mString
 
-
-
-
 def regInDb(propusk):
 
     # Вставляем данные в таблицу
@@ -53,11 +50,8 @@ def regInDb(propusk):
 
 
 while True:
-    print('.')
-  
-    resp = ser.readline()
-  
-    # Вариант вывода 1
+    print('.')  
+    resp = ser.readline()      
     if len(resp) > 5:
         mStr    =   resp.decode("utf-8")
         mStr    =   removeFix(mStr)
