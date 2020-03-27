@@ -1,22 +1,6 @@
-# https://github.com/legavaz/comPortPy.git
-import serial
-import sys,time
+
 import sqlite3
-
-ser             = serial.Serial()
-ser.port        = "com7"
-ser.baudrate    =  9600
-ser.timeout     = 1
-# ---------------------
-
-# try to connect
-try:
-    ser.open()
-except serial.SerialException as e:
-    print("Error:",e)
-    serial = None
-    exit(1)
-
+import time
 
 conn = sqlite3.connect("checkStaff.db")  # или :memory: чтобы сохранить в RAM
 cursor = conn.cursor()
@@ -28,14 +12,6 @@ try:
                """)
 except:
     print('sql : ok')
-
-
-def removeFix(mString=""):
-    mString =   mString.replace("x",'')
-    mString =   mString.replace("\r\n",'')
-    return mString
-
-
 
 
 def regInDb(propusk):
@@ -52,18 +28,7 @@ def regInDb(propusk):
     conn.commit()
 
 
-while True:
-    print('.')
-  
-    resp = ser.readline()
-  
-    # Вариант вывода 1
-    if len(resp) > 5:
-        mStr    =   resp.decode("utf-8")
-        mStr    =   removeFix(mStr)
-        regInDb(mStr)
-        print(time.strftime('%H:%M:%S'),mStr)
+propusk =   input(' введите строку: ')
+regInDb(propusk)
 
-
-print('exit - ok')
-
+print('ok')
