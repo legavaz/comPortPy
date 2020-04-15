@@ -1,0 +1,9 @@
+
+            
+Таблица: checkStaff   
+    propusk text
+    timeStr text
+    timeInt text
+
+Запрос на все поля:
+    SELECT * FROM `checkStaff`;
