@@ -39,6 +39,7 @@ for target_list in result:
 param = json.dumps(mList)
 # print(param)
 req = requests.get(url+param, auth=(user, password))
+# print(url+param)
 if req.status_code == 200:
     print(req.text)
 else:
