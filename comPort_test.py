@@ -1,9 +1,10 @@
 import comPort_Sql,comPort_utils
 import datetime,time
 
-db  =   comPort_Sql.db()
+db      =   comPort_Sql.db('checkStaff.db')
+dbOld   =   comPort_Sql.db('_checkStaff.db')
 
-# db.deleteAllRecord()
+db.deleteAllRecord()
 
 def showQuery(result):    
     if result==None:
@@ -14,8 +15,8 @@ def showQuery(result):
         
         # Перенос из старой базы данных
         # {
-        # mPropusk    =   comPort_utils.removeFix(target_list[0])        
-        # db.regPropusk(mPropusk,10) #Регистрация в базе данных
+        mPropusk    =   comPort_utils.removeFix(target_list[0])        
+        db.regPropusk(mPropusk,10) #Регистрация в базе данных
         # }
         
         # Отметить запись как выгруженную
@@ -41,8 +42,8 @@ def showQuery(result):
 
 
 # Перенос записей из старой таблицы
-sql     = "SELECT * FROM 'staffWork' ;"
-result  =   db.sqlQuery_fetch(sql,None)
+sql     = "SELECT * FROM 'checkStaff' ;"
+result  =   dbOld.sqlQuery_fetch(sql,None)
 
 
 showQuery(result)

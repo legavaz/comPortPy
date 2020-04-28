@@ -31,8 +31,8 @@
 import sqlite3,datetime,time
 
 class db():
-    def __init__(self):
-        self.conn   =   sqlite3.connect("checkStaff.db")  # или :memory: чтобы сохранить в RAM        
+    def __init__(self,baseName):
+        self.conn   =   sqlite3.connect(baseName)  # или :memory: чтобы сохранить в RAM        
         self.cursor =   self.conn.cursor()
         self.creatTable()
 
@@ -47,7 +47,7 @@ class db():
             "propusk_id_txt"	TEXT NOT NULL,
             "time_int"	INTEGER,
             "time_str"	TEXT,
-            "DateTime"	timestamp
+            "DateTime"	timestamp,
             "export_bl"	INTEGER,
             "workPlace_int"	INTEGER);
             """)
@@ -61,12 +61,13 @@ class db():
             return
         command =   """
         INSERT INTO "main"."staffWork"(
-            "propusk_id_txt"            ,"time_int"     ,"time_str"     ,"export_bl"    ,"workPlace_int") 
-            VALUES ('%propusk_id_txt%'  ,'%time_int%'   ,'%time_str%'   ,'%export_bl%'  ,'%workPlace_int%');
+            "propusk_id_txt"            ,"time_int"     ,"time_str"     ,"export_bl"    ,"DateTime"     ,"workPlace_int") 
+            VALUES ('%propusk_id_txt%'  ,'%time_int%'   ,'%time_str%'   ,'%export_bl%'  ,'%DateTime%'   ,'%workPlace_int%');
         """
         command =command.replace('%propusk_id_txt%'  ,propusk_id_txt)
         command =command.replace('%time_int%'        ,str(time.time()))
         command =command.replace('%time_str%'        ,str(datetime.datetime.today()))
+        command =command.replace('%DateTime%'        ,str(datetime.datetime.today()))
         command =command.replace('%export_bl%'       ,str(0))
         command =command.replace('%workPlace_int%'   ,str(workPlace_int))
 
