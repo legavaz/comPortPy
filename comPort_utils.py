@@ -1,6 +1,12 @@
 
 
 def removeFix(mString=""):
-    mString =   mString.replace("x",'')
-    mString =   mString.replace("\r\n",'')
-    return mString
+    goodLetter = '0123456789'
+    result = ''
+    for let in mString:
+        for blet in goodLetter:
+            if let == blet:
+                result += let
+
+    return result
+

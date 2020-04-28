@@ -1,6 +1,5 @@
 # https://github.com/legavaz/comPortPy.git
-import serial
-import sys,time
+import serial,time
 import sqlite3
 import comPort_Sql
 
