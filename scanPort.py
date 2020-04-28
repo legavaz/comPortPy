@@ -2,6 +2,7 @@
 import serial
 import sys,time
 import sqlite3
+import comPort_Sql
 
 ser             = serial.Serial()
 ser.port        = "com7"
@@ -36,7 +37,6 @@ def removeFix(mString=""):
     return mString
 
 def regInDb(propusk):
-
     # Вставляем данные в таблицу
     command = """INSERT INTO checkStaff
                   VALUES ('%propusk%', '%timeStr%', '%timeInt%')"""
@@ -47,6 +47,16 @@ def regInDb(propusk):
 
     # Сохраняем изменения
     conn.commit()
+
+def check_change(id,vul):
+    # Изменяем данные в таблице
+    command =   """UPDATE "main"."test" SET "export_bl"=%val% WHERE "_rowid_"='%id%';"""
+    command = command.replace('%vul%', str(vul))
+    command = command.replace('%id%', str(id))
+    cursor.execute(command)
+    # Сохраняем изменения
+    conn.commit()
+
 
 
 while True:
