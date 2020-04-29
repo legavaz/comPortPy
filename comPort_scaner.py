@@ -6,8 +6,7 @@ import comPort_Sql,comPort_utils
 setting = comPort_utils.setting()
 setting.print_setting()
 
-stanok          =  setting.stanok
-
+# Установка настроек
 ser             = serial.Serial()
 ser.port        = setting.port
 ser.baudrate    = int(setting.baudrate)
@@ -29,7 +28,7 @@ while True:
     resp = ser.readline()      
     if len(resp) > 5:
         mStr    =   resp.decode("utf-8")        
-        db.regPropusk(mStr,stanok)
+        db.regPropusk(mStr,setting.stanok)
         print(time.strftime('%H:%M:%S'),mStr)
 
 
