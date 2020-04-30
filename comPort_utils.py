@@ -33,11 +33,16 @@ class setting():
         config.add_section("MACHINE")
         config.set("MACHINE", "stanok", '77')
 
+        config.add_section("CONNECT_1C")
+        config.set("CONNECT_1C", "url_http_service" , 'http://localhost/danv_copy_lpack_buh3/hs/staffstatis/import/')
+        config.set("CONNECT_1C", "user"             , '1cv8')
+        config.set("CONNECT_1C", "password"         , '')
+
+
         with open(self.path, "w") as config_file:
             config.write(config_file)
 
-    def readConfig(self):
-        
+    def readConfig(self):      
         
         if not os.path.exists(self.path):        
             self.createConfig()
@@ -51,12 +56,20 @@ class setting():
 
         self.db         =   config.get("DB", "db")        
         self.stanok     =   config.get("MACHINE", "stanok")
+
+        self.url_http_service   =   config.get("CONNECT_1C", "url_http_service")        
+        self.user               =   config.get("CONNECT_1C", "user")
+        self.password           =   config.get("CONNECT_1C", "password")
+
         self.setting    =   {
                             'port':self.port,
                             'baudrate':self.baudrate,
                             'timeout':self.timeout,
                             'db':self.db,
-                            'stanok':self.stanok
+                            'stanok':self.stanok,
+                            'url_http_service':self.url_http_service,
+                            'user':self.user,                            
+                            'password':self.password
                             }
 
     def print_setting(self):

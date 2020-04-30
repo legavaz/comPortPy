@@ -116,9 +116,9 @@ class db():
 
     def change_unload_status(self, record_id, value=0):
         command = """
-        UPDATE "main"."staffWork" SET "export_bl"=? WHERE "test_id_int"=?;
+        UPDATE "main"."staffWork" SET "export_bl"=:value WHERE "test_id_int"=:id;
         """
-        self.cursor.execute(command, value, record_id)
+        self.cursor.execute(command, {'value':value,'id':record_id})
         # Сохраняем изменения
         self.conn.commit()
 
