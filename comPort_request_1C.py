@@ -47,6 +47,7 @@ if json.loads(param)    !=  []:
         print(req.text)
         change_status(param)
     else:
-        print('ошибка подключения', req.status_code)
+        print('error:',req.status_code, req.text)
+        
 else:
     print('нет данных для выгрузки')

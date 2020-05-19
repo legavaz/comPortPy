@@ -19,6 +19,7 @@ setting = comPort_utils.setting()
 
 setting.print_setting()
 
+db.deleteAllRecord()
 
 
 
