@@ -17,7 +17,8 @@ try:
     ser.open()
 except serial.SerialException as e:
     print("Error:",e)
-    serial = None
+    serial = None    
+    comPort_utils.exit_program('Ошибка подключения порта')
     exit(1)
 
 # подключаем базу данных
@@ -31,5 +32,4 @@ while True:
         db.regPropusk(mStr,setting.stanok)
         print(time.strftime('%H:%M:%S'),mStr)
 
-
-print('exit - ok')
+comPort_utils.exit_program()

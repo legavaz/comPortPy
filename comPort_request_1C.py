@@ -51,3 +51,5 @@ if json.loads(param)    !=  []:
         
 else:
     print('нет данных для выгрузки')
+
+comPort_utils.exit_program()

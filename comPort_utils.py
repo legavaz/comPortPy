@@ -1,5 +1,14 @@
 
-import configparser,os
+import configparser,os,time
+
+
+def exit_program(msg_str:str=''):
+    if msg_str.strip(' ')=='':
+        print('exit...')
+    else:
+        print('exit...',msg_str)
+    time.sleep(3)
+
 
 def removeFix(mString=""):
     goodLetter = '0123456789'
@@ -34,7 +43,7 @@ class setting():
         config.set("MACHINE", "stanok", '77')
 
         config.add_section("CONNECT_1C")
-        config.set("CONNECT_1C", "url_http_service" , 'http://localhost/danv_copy_lpack_buh3/hs/staffstatis/import/')
+        config.set("CONNECT_1C", "url_http_service" , 'http://1c-www-server/erp/hs/staffstatis/import/')
         config.set("CONNECT_1C", "user"             , '1cv8')
         config.set("CONNECT_1C", "password"         , '')
 
